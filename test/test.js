@@ -31,7 +31,7 @@ describe('Mongo driver tests', async function () {
     })
 
 
-    let data = {firstname: 'toto', lastname: 'totoïto'}
+    let data = {firstname: 'toto'}
     describe('Models', function () {
         it('should save a model', async function () {
             const user = new application.models.user(data)
@@ -60,6 +60,7 @@ describe('Mongo driver tests', async function () {
                 should.not.exist(e)
             }
         })
+
         it('should update a model', async function () {
             const user = new application.models.user({...data, firstname: 'jéjé'})
             try {
@@ -75,6 +76,23 @@ describe('Mongo driver tests', async function () {
                 should.not.exist(e)
             }
         })
+
+        it('should update a model again', async function () {
+            const user = new application.models.user({...data, lastname: 'postman'})
+            try {
+                const result = await user.update()
+                should.exist(result)
+
+                should.exist(result.data)
+                should.equal(result.data.id, user.data.id)
+                should.exist(result.data.lastname)
+                should.equal(result.data.lastname, user.data.lastname)
+            } catch (e) {
+                console.error(e)
+                should.not.exist(e)
+            }
+        })
+
         it('should delete a model', async function () {
             const user = new application.models.user(data)
             try {

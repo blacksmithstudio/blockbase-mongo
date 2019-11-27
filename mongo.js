@@ -37,6 +37,11 @@ module.exports = app => {
     return {
 
         /**
+         * Raw Execute function
+         */
+        execute: _execute,
+
+        /**
          * Export ObjectID
          */
         ObjectID,
@@ -119,8 +124,6 @@ module.exports = app => {
         async updateOne(database, collection, filter, data) {
             if (typeof data !== 'object')
                 throw new Error('MongoDB Error, expected data to be an Object')
-            console.log('updateOne', filter, data)
-
             const func = async col => col.updateOne(filter, {$set: data})
             const {modifiedCount, upsertedId, upsertedCount, matchedCount} = await _execute(database, collection, func)
             return {modifiedCount, upsertedId, upsertedCount, matchedCount}
