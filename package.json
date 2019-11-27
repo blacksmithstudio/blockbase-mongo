@@ -1,0 +1,24 @@
+{
+  "name": "blockbase-mongo",
+  "version": "1.0.0",
+  "description": "Mongo driver for blockbase",
+  "main": "driver.js",
+  "scripts": {
+    "test": "mocha --exit"
+  },
+  "keywords": [
+    "blockbase",
+    "mongo"
+  ],
+  "author": "Sebastien Hideux <code@blacksmith.studio>",
+  "license": "MIT",
+  "dependencies": {
+    "mongodb": "^3.3.5"
+  },
+  "devDependencies": {
+    "@hapi/joi": "*",
+    "blockbase": "^1.0.22",
+    "mocha": "^5.2.0",
+    "should": "^13.2.3"
+  }
+}
